@@ -1,8 +1,8 @@
 
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: T MOUNISH</H3>
+<H3>ENTER YOUR REGISTER NO: 212223240098</H3>
 <H3>EX. NO.4</H3>
-<H3>DATE:</H3>
+<H3>DATE: 02-10-2025</H3>
 <H1 ALIGN =CENTER>Implementation of MLP with Backpropagation for Multiclassification</H1>
 <H3>Aim:</H3>
 To implement a Multilayer Perceptron for Multi classification
@@ -116,11 +116,34 @@ Normalize our dataset.
 
 <H3>Program:</H3> 
 
-Insert your code here
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+df = pd.read_csv('winequality-red.csv')
+print(df.head())
+X = df.iloc[:, 0:11]
+y = df['quality']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+mlp = MLPClassifier(hidden_layer_sizes=(12, 13, 14), activation='relu', solver='adam', max_iter=2500, random_state=42)
+mlp.fit(X_train, y_train)
+predictions = mlp.predict(X_test)
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, predictions))
+print("\nClassification Report:")
+print(classification_report(y_test, predictions))
+```
 
 <H3>Output:</H3>
 
-Show your results here
+<img width="756" height="723" alt="image" src="https://github.com/user-attachments/assets/c98b6af1-5509-4474-ac35-00178c497309" />
+
 
 <H3>Result:</H3>
 Thus, MLP is implemented for multi-classification using python.
